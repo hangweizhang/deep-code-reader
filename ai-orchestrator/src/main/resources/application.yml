@@ -11,7 +11,7 @@ spring:
           model: gpt-4o-mini
     mcp:
       client:
-        enabled: true
+        enabled: ${MCP_CLIENT_ENABLED:false}
         sse:
           connections:
             docs:
@@ -23,6 +23,8 @@ dubbo:
   registry:
     address: N/A
 rpc:
+  mock:
+    enabled: ${RPC_MOCK_ENABLED:true}
   graph-service:
     url: dubbo://127.0.0.1:20880
   semantic-service:
@@ -32,7 +34,7 @@ orchestrator:
     type: local
     max-messages: 20
     redis:
-      key-prefix: cdr:ai:memory:
+      key-prefix: 'cdr:ai:memory:'
       ttl: 12h
   llm:
     default-model: openai-default
