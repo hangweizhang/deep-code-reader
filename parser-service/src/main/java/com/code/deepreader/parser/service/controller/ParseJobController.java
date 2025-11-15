@@ -1,5 +1,6 @@
 package com.code.deepreader.parser.service.controller;
 
+import com.code.deepreader.parser.service.dto.ParseArtifactsResponse;
 import com.code.deepreader.parser.service.dto.ParseRequest;
 import com.code.deepreader.parser.service.dto.ParseResponse;
 import com.code.deepreader.parser.service.dto.ParseStatusResponse;
@@ -32,6 +33,13 @@ public class ParseJobController {
     @GetMapping("/{jobId}")
     public ResponseEntity<ParseStatusResponse> queryStatus(@PathVariable String jobId) {
         return parsePipelineService.getStatus(jobId)
+                .map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).build());
+    }
+
+    @GetMapping("/{jobId}/artifacts")
+    public ResponseEntity<ParseArtifactsResponse> queryArtifacts(@PathVariable String jobId) {
+        return parsePipelineService.getArtifacts(jobId)
                 .map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).build());
     }

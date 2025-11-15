@@ -6,3 +6,7 @@ spring:
   batch:
     jdbc:
       initialize-schema: always
+parser:
+  execution:
+    async: true
+    threads: 4
