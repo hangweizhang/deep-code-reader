@@ -1,0 +1,4 @@
+platform:
+  messaging:
+    topic-prefix: cdr
+    max-concurrency: 4

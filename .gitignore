@@ -1,0 +1,23 @@
+# Maven/Gradle
+/target/
+**/target/
+**/build/
+
+# IDE
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+
+# OS
+.DS_Store
+
+# Logs & temp
+logs/
+**/logs/
+*.log
+.tmp/
+
+# Node
+node_modules/

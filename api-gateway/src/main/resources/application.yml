@@ -1,0 +1,37 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      default-filters:
+        - name: RequestSize
+          args:
+            maxSize: 5MB
+      routes:
+        - id: ingestion-service
+          uri: http://localhost:8081
+          predicates:
+            - Path=/api/v1/ingestions/**
+        - id: parser-service
+          uri: http://localhost:8082
+          predicates:
+            - Path=/api/v1/parses/**
+        - id: graph-service
+          uri: http://localhost:8083
+          predicates:
+            - Path=/api/v1/graph/**
+        - id: semantic-service
+          uri: http://localhost:8084
+          predicates:
+            - Path=/api/v1/semantic/**
+        - id: ai-orchestrator
+          uri: http://localhost:8085
+          predicates:
+            - Path=/api/v1/deep-read/**
+security:
+  oauth2:
+    resource-server:
+      jwt:
+        issuer-uri: https://login.example.com

@@ -1,0 +1,18 @@
+server:
+  port: 8083
+spring:
+  application:
+    name: graph-service
+  neo4j:
+    uri: bolt://localhost:7687
+    authentication:
+      username: neo4j
+      password: changeme
+dubbo:
+  application:
+    name: graph-service
+  protocol:
+    name: dubbo
+    port: 20880
+  registry:
+    address: N/A
